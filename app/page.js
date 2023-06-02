@@ -1,14 +1,8 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
-import { ReactLenis, useLenis } from "../utils/lenis";
 import Banner from "@/components/Banner";
+import SmallCard from "@/components/SmallCard";
 
-function ScrollableContentHome() {
-  useLenis((lenis) => {
-    // console.log('Current page progress', lenis.progress)
-  });
-
+export default async function Home() {
+  const exploreData = await getStaticProps();
   return (
     <>
       <Banner />
@@ -20,37 +14,32 @@ function ScrollableContentHome() {
           </h2>
 
           {/* Pull from API */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {exploreData?.map(({ img, distance, location }) => (
+              <SmallCard
+                key={img}
+                img={img}
+                distance={distance}
+                location={location}
+              />
+            ))}
+          </div>
+        </section>
+
+        <section>
+          
         </section>
       </main>
     </>
   );
 }
 
-function Home() {
-  // state change simulation to test deps
-  const [count, setCount] = useState(0);
+async function getStaticProps() {
+  const exploreData = await fetch("https://www.jsonkeeper.com/b/4G1G");
+  if (!exploreData.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error("Failed to fetch data");
+  }
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCount((v) => v + 1);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  useLenis(
-    ({ scroll }) => {
-      // console.log('Current scroll position', scroll, count)
-    },
-    [count],
-    1
-  );
-
-  return (
-    <ReactLenis root options={{}}>
-      <ScrollableContentHome />
-    </ReactLenis>
-  );
+  return exploreData.json();
 }
-
-export default Home;

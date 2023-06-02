@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "RentAHome",
-  description: "Created by Alex Borges",
+  description: "Application which lets you search different real estate options close to you. Created by Alex Borges.",
 };
 
 export default function RootLayout({ children }) {
