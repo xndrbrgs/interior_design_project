@@ -3,6 +3,6 @@ const nextConfig = {};
 
 module.exports = {
   images: {
-    domains: [],
+    domains: ["i.ibb.co"],
   },
 };
