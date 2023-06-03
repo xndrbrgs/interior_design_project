@@ -11,6 +11,7 @@ import {
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRangePicker } from "react-date-range";
+import Link from "next/link";
 
 function NavBar() {
   const [searchInput, setSearchInput] = useState("");
@@ -31,17 +32,19 @@ function NavBar() {
   };
 
   const resetInput = () => {
-    setSearchInput('');
-  }
+    setSearchInput("");
+  };
 
   return (
     <div className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md p-5 md:px-10 items-center">
       <div className="relative flex items-center my-auto">
-        <Image
-          src="https://i.ibb.co/PMgmb5d/logo.png"
-          width={200}
-          height={200}
-        />
+        <Link href='/'>
+          <Image
+            src="https://i.ibb.co/PMgmb5d/logo.png"
+            width={200}
+            height={200}
+          />
+        </Link>
       </div>
 
       {/* Input Field  */}
