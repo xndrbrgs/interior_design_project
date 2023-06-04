@@ -13,7 +13,7 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRangePicker } from "react-date-range";
 import Link from "next/link";
 
-function NavBar() {
+function NavBar(placeholder) {
   const [searchInput, setSearchInput] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -38,11 +38,12 @@ function NavBar() {
   return (
     <div className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md p-5 md:px-10 items-center">
       <div className="relative flex items-center my-auto">
-        <Link href='/'>
+        <Link href={'/'}>
           <Image
             src="https://i.ibb.co/PMgmb5d/logo.png"
             width={200}
             height={200}
+            alt=""
           />
         </Link>
       </div>
@@ -53,7 +54,7 @@ function NavBar() {
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
           type="text"
-          placeholder="Start your search"
+          placeholder={placeholder.placeholder || "Start your search"}
           className="pl-5 bg-transparent outline-none flex-grow text-sm text-gray-600 placeholder-gray-400"
         />
         <MagnifyingGlassIcon className="hidden md:inline-flex h-8 bg-[#EAD2AB] text-white rounded-full p-2 cursor-pointer md:mx-2" />
@@ -97,7 +98,19 @@ function NavBar() {
               Cancel
             </button>
             <button className="flex-grow bg-[#EAD2AB] border-2 rounded-full py-2 hover:shadow-lg transition">
-              Search
+              <Link
+                href={{
+                  pathname: "/search",
+                  query: {
+                    location: searchInput,
+                    startDate: startDate.toISOString(),
+                    endDate: endDate.toISOString(),
+                    noOfGuests,
+                  },
+                }}
+              >
+                Search
+              </Link>
             </button>
           </div>
         </div>

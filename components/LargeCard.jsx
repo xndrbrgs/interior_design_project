@@ -10,6 +10,7 @@ function LargeCard({ img, title, description, buttonText }) {
           fill
           style={{ objectFit: "cover" }}
           className="rounded-2xl"
+          alt=""
         />
       </div>
       <div className="absolute top-32 left-12">

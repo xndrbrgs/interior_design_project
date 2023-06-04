@@ -2,6 +2,7 @@ import Banner from "@/components/Banner";
 import Footer from "@/components/Footer";
 import LargeCard from "@/components/LargeCard";
 import MediumCard from "@/components/MediumCard";
+import NavBar from "@/components/NavBar";
 import SmallCard from "@/components/SmallCard";
 
 export default async function Home() {
@@ -9,6 +10,7 @@ export default async function Home() {
   const cardsData = await getCardsData();
   return (
     <>
+      <NavBar />
       <Banner />
 
       <main className="max-w-7xl mx-auto px-8 sm:px-16">

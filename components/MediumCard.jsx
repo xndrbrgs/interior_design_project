@@ -10,6 +10,7 @@ function MediumCard({ img, title }) {
           fill
           style={{ objectFit: "contain" }}
           className="rounded-lg"
+          alt=""
         />
       </div>
       <div>

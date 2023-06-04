@@ -9,6 +9,7 @@ function SmallCard({ img, location, distance }) {
           fill
           style={{ objectFit: "contain" }}
           className="rounded-lg"
+          alt=""
         />
       </div>
       <div>
