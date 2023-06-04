@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { format } from "date-fns";
 import NavBar from "@/components/NavBar";
 import InfoCard from "@/components/infoCard";
+import Maps from "@/components/Map";
 
 export default async function Search() {
   const searchParams = useSearchParams();
@@ -56,6 +57,10 @@ export default async function Search() {
               )
             )}
           </div>
+        </section>
+
+        <section className="hidden lg:inline-flex lg:min-w-[600px]">
+          <Maps searchResults={searchResults} />
         </section>
       </main>
     </div>
