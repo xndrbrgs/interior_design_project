@@ -3,6 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { format } from "date-fns";
 import NavBar from "@/components/NavBar";
+import InfoCard from "@/components/infoCard";
 
 export default async function Search() {
   const searchParams = useSearchParams();
@@ -39,7 +40,22 @@ export default async function Search() {
             <p className="filters">Filters</p>
           </div>
 
-
+          <div className="flex flex-col mb-3">
+            {searchResults?.map(
+              ({ img, location, title, description, star, price, total }) => (
+                <InfoCard
+                  key={img}
+                  img={img}
+                  location={location}
+                  title={title}
+                  description={description}
+                  star={star}
+                  price={price}
+                  total={total}
+                />
+              )
+            )}
+          </div>
         </section>
       </main>
     </div>
