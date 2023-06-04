@@ -21,6 +21,7 @@ function Maps({ searchResults }) {
 
   return (
     <div className="w-full h-full overflow-hidden">
+        {/* Mapbox key in env  */}
       <Map
         mapLib={import("mapbox-gl")}
         initialViewState={{
