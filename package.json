@@ -11,7 +11,9 @@
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@studio-freight/react-lenis": "^0.0.20",
+    "@tailwindcss/line-clamp": "^0.4.4",
     "autoprefixer": "10.4.14",
+    "axios": "^1.4.0",
     "date-fns": "^2.30.0",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.4",

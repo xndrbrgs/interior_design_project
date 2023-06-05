@@ -4,10 +4,17 @@ import LargeCard from "@/components/LargeCard";
 import MediumCard from "@/components/MediumCard";
 import NavBar from "@/components/NavBar";
 import SmallCard from "@/components/SmallCard";
+import NearbyProperties from "@/components/NearbyProperties";
+import { baseUrl, fetchAPI } from "@/utils/fetchAPI";
 
 export default async function Home() {
   const exploreData = await getExploreData();
   const cardsData = await getCardsData();
+  const propertyForRent = await getRentalInfo();
+
+
+  console.log(propertyForRent);
+
   return (
     <>
       <NavBar />
@@ -21,13 +28,29 @@ export default async function Home() {
           </h2>
 
           {/* Pull from API */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {/* <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {exploreData?.map(({ img, distance, location }) => (
               <SmallCard
                 key={img}
                 img={img}
                 distance={distance}
                 location={location}
+              />
+            ))}
+          </div> */}
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {propertyForRent?.map(({ id, title, rooms, baths, coverPhoto, price, title_l2, score, agency }) => (
+              <NearbyProperties
+                key={id}
+                price={price}
+                title={title}
+                rooms={rooms}
+                baths={baths}
+                title_l2={title_l2}
+                score={score}
+                coverPhoto={coverPhoto}
+                agency={agency}
               />
             ))}
           </div>
@@ -73,4 +96,14 @@ async function getCardsData() {
   }
 
   return cardsData.json();
+}
+
+async function getRentalInfo() {
+  const propertiesForRent = await fetchAPI(
+    `${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=8`
+  );
+
+  const propertyForRent = propertiesForRent.hits;
+
+  return propertyForRent;
 }
